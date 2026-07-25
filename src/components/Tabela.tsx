@@ -1,4 +1,8 @@
+
+
 import Cliente from "../core/Cliente"
+import { IconeEdicao, Iconelixo } from "./Icones"
+
 
 interface TabelaProps {
     clientes: Cliente[]
@@ -15,6 +19,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-4">Código</th>
                 <th className="text-left p-4">Nome</th>
                 <th className="text-left p-4">Idade</th>
+                <th className="p-4">Ações</th>
             </tr>
         )
     }
@@ -24,10 +29,25 @@ export default function Tabela(props: TabelaProps) {
                 <tr key={cliente.id} className={`${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}`}>
                     <td className="text-left p-4">{cliente.id}</td>
                     <td className="text-left p-4">{cliente.nome}</td>
-                    <td className="text-left p-4">{cliente.idade}</td>
+                    <td className="text-left p-4">{cliente.
+                    idade}</td>
+                    {renderizarAcoes(cliente)}
                 </tr>
             )
         })
+    }
+
+    function renderizarAcoes(cliente: Cliente) {
+        return (
+            <td>
+                <button className="text-green-600 mr-2">
+                <IconeEdicao />
+            </button>
+            <button className="text-red-600">
+                <Iconelixo />
+            </button>
+            </td> 
+        )
     }
 
 
