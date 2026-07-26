@@ -19,7 +19,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-4">Código</th>
                 <th className="text-left p-4">Nome</th>
                 <th className="text-left p-4">Idade</th>
-                <th className="p-4">Ações</th>
+                <th className="p-4 ">Ações</th>
             </tr>
         )
     }
@@ -39,14 +39,14 @@ export default function Tabela(props: TabelaProps) {
 
     function renderizarAcoes(cliente: Cliente) {
         return (
-            <td className="flex">
+            <td className="flex justify-center">
                 <button className = {`flex justify-center items-center 
-                text-green-600 rounded-full P-3 m-1" hover:bg-purple-50 
+                text-green-600 rounded-full P-3 m-1 hover:bg-purple-50 
                 `} >
                 <IconeEdicao/>
             </button>
             <button className = {`flex justify-center items-center 
-                text-red-500 rounded-full P-3 m-1"
+                text-red-500 rounded-full P-3 m-1
                 hover:bg-purple-50 
                 `} >
                 < Iconelixo />

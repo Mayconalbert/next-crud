@@ -11,7 +11,7 @@ export default function Layout(props: LayoutProps){
         flex flex-col w-2/3
         bg-white text-gray-800 rounded-md`}>
             <Titulo>{props.titulo}</Titulo>
-            <div>
+            <div className="p-5 pb-2 text-2x1">
                 {props.children}
             </div>
         </div>
