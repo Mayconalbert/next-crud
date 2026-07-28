@@ -42,28 +42,36 @@ export default function Tabela(props: TabelaProps) {
     }
 
     function renderizarAcoes(cliente: Cliente) {
-        return (
-            <td className="flex justify-center">
-                {props.clienteSelecionado? (
-    
-                <button className = {`flex justify-center items-center 
-                text-green-600 rounded-full P-3 m-1 hover:bg-purple-50 
-                `} >
-                <IconeEdicao/>
-            </button>
-                ): false}
-                {props.clienteExcluido ? (
-    
-                
-                    <button className = {`flex justify-center items-center 
-                        text-red-500 rounded-full P-3 m-1
-                        hover:bg-purple-50 
-                        `} >
-                        < Iconelixo />
-                    </button>
-                ): false}
-            </td> 
-        )
+    return (
+        <td className="flex justify-center">
+            {props.clienteSelecionado ? (
+                <button
+                    onClick={() => props.clienteSelecionado?.(cliente)}
+                    className={`
+                        flex justify-center items-center
+                        text-green-600 rounded-full p-3 m-1
+                        hover:bg-purple-50
+                    `}
+                >
+                    <IconeEdicao />
+                </button>
+            ) : false}
+
+            {props.clienteExcluido ? (
+                <button
+                    onClick={() => props.clienteExcluido?.(cliente)}
+                    className={`
+                        flex justify-center items-center
+                        text-red-500 rounded-full p-3 m-1
+                        hover:bg-purple-50
+                    `}
+                >
+                    <Iconelixo />
+                </button>
+            ) : false}
+        </td>
+    )
+
     }
 
 

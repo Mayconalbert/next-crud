@@ -10,6 +10,11 @@ export default function Home() {
     new Cliente('Pedro', 54, '4')
   ]
   function clienteSelecionado(cliente) {
+    console.log(cliente.nome)
+
+  }
+  function clienteExcluido(cliente) {
+    console.log(`Excluir... ${cliente.nome}`)
 
   }
 
@@ -19,8 +24,11 @@ export default function Home() {
       bg-gradient-to-t from-blue-500 to-punch-500
    `}>
     <Layout titulo="Cadrastro Simples">
-      <Tabela clientes={clientes} clienteSelecionado={clienteSelecionado}></Tabela>
-    </Layout>
+      <Tabela clientes={clientes} 
+      clienteSelecionado={clienteSelecionado}
+      clienteExcluido={clienteExcluido}
+      />
+      </Layout>
     </div>
   )
 }
