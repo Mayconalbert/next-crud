@@ -1,6 +1,7 @@
 import Layout from "../components/Layout"
 import Tabela from "../components/Tabela"
 import Cliente from "../core/Cliente"
+import Botao from "../components/Botao"
 
 export default function Home() {
   const clientes = [
@@ -24,6 +25,10 @@ export default function Home() {
       bg-gradient-to-t from-blue-500 to-punch-500
    `}>
     <Layout titulo="Cadrastro Simples">
+      <div className="flex justify-end">
+      <Botao cor="green" className="mb-4">Novo cliente</Botao>
+
+      </div>
       <Tabela clientes={clientes} 
       clienteSelecionado={clienteSelecionado}
       clienteExcluido={clienteExcluido}

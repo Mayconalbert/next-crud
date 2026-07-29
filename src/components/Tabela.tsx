@@ -1,5 +1,4 @@
 
-
 import Cliente from "../core/Cliente"
 import { IconeEdicao, Iconelixo } from "./Icones"
 
@@ -77,6 +76,7 @@ export default function Tabela(props: TabelaProps) {
 
     return (
         <table className="w-full rounded-xl overflow-hidden">
+            
             <thead className={`
             text-gray-100
                 bg-gradient-to-r from-purple-500 to-purple-800`}>
