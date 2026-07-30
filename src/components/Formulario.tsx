@@ -5,6 +5,7 @@ import Botao from "./Botao";
 
 interface FormularioProps {
     cliente: Cliente
+    cancelado?: () => void
 
 }
 
@@ -38,7 +39,7 @@ export default function Formulario(props: FormularioProps) {
                     <Botao cor="blue" className="mr-2">
                         {id ? 'alterar' : 'salvar'}
                     </Botao>
-                    <Botao>
+                    <Botao onClick={props.cancelado}>
                         Cancelar
                     </Botao>
                 </div>

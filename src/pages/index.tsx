@@ -45,7 +45,9 @@ export default function Home() {
 
         </>
       ):(
-        <Formulario cliente={clientes[2]}></Formulario>
+        <Formulario 
+        cliente={clientes[2]}
+        cancelado={() => setVisivel('tabela')}></Formulario>
 
       )}
       </Layout>
