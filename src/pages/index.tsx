@@ -21,6 +21,10 @@ export default function Home() {
 
   }
 
+  function salvarCliente(cliente: Cliente) {
+    console.log(cliente)
+  }
+
   const [visivel, setVisivel] = useState<'tabela' | 'form'> ('tabela')
 
   return (
@@ -47,6 +51,8 @@ export default function Home() {
       ):(
         <Formulario 
         cliente={clientes[2]}
+        clienteMudou={salvarCliente}
+       
         cancelado={() => setVisivel('tabela')}></Formulario>
 
       )}

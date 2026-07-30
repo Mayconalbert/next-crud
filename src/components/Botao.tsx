@@ -5,7 +5,7 @@ interface BotaoProps {
     onClick?: () => void
 }
 
-export default function Botao(props) {
+export default function Botao(props: BotaoProps) {
     const cor = props.cor ?? 'gray'
     return (
         <button onClick={props.onClick}className={`
