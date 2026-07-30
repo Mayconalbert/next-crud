@@ -3,6 +3,7 @@ import Tabela from "../components/Tabela"
 import Cliente from "../core/Cliente"
 import Botao from "../components/Botao"
 import Formulario from "../components/Formulario"
+import { useState } from "react"
 
 export default function Home() {
   const clientes = [
@@ -20,21 +21,33 @@ export default function Home() {
 
   }
 
+  const [visivel, setVisivel] = useState<'tabela' | 'form'> ('tabela')
+
   return (
     <div className={`
       flex justify-center items-center h-screen
       bg-gradient-to-t from-blue-500 to-punch-500
    `}>
+    
     <Layout titulo="Cadrastro Simples">
-      <div className="flex justify-end">
-      <Botao cor="green" className="mb-4">Novo cliente</Botao>
+      {visivel === 'tabela' ? (
+        <>
+          <div className="flex justify-end">
+          <Botao cor="green" className="mb-4"
+            onClick={() => setVisivel('form')}>
+            Novo cliente</Botao>
 
-      </div>
-      {/* <Tabela clientes={clientes} 
-      clienteSelecionado={clienteSelecionado}
-      clienteExcluido={clienteExcluido}
-      /> */}
-      <Formulario cliente={clientes[2]}></Formulario>
+          </div>
+          <Tabela clientes={clientes} 
+          clienteSelecionado={clienteSelecionado}
+          clienteExcluido={clienteExcluido}
+          />
+
+        </>
+      ):(
+        <Formulario cliente={clientes[2]}></Formulario>
+
+      )}
       </Layout>
     </div>
   )
