@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import Cliente from "../core/Cliente";
 import ColecaoCliente from "../Backend/db/ColecaoCliente";
 import ClienteRepositorio from "../core/ClienteRepositorio";
+import useTabelaOuform from "./usetabelaOuForm";
 
-export default function useCliente() {
+export default function useClientes() {
   const repo: ClienteRepositorio = new ColecaoCliente();
 
   const [cliente, setCliente] = useState<Cliente>(Cliente.vazio());
+
+  const { tabelaVisivel, exibirTabela, exibirFormulario } =
+    useTabelaOuform();
+
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [visivel, setVisivel] = useState<"tabela" | "form">("tabela");
 
@@ -15,13 +20,13 @@ export default function useCliente() {
   function obterTodos() {
     repo.obterTodos().then((clientes) => {
       setClientes(clientes);
-      setVisivel("tabela");
+      exibirTabela();
     });
   }
 
   function clienteSelecionado(cliente: Cliente) {
     setCliente(cliente);
-    setVisivel("form");
+    exibirFormulario();
   }
 
   async function excluirCliente(cliente: Cliente) {
@@ -31,7 +36,7 @@ export default function useCliente() {
 
   function novoCliente() {
     setCliente(Cliente.vazio());
-    setVisivel("form");
+    exibirFormulario();
   }
 
   async function salvarCliente(cliente: Cliente) {
@@ -44,16 +49,17 @@ export default function useCliente() {
       console.error("ERRO DO FIREBASE:", erro);
       alert(`Erro ao salvar: ${erro?.message || erro}`);
     }
-  }return {
-    
+    exibirTabela();
+  }
+  return {
     novoCliente,
     salvarCliente,
     excluirCliente,
     clienteSelecionado,
     obterTodos,
     cliente,
-    clientes
-  }
+    clientes,
+    tabelaVisivel,
+    exibirTabela,
+  };
 }
-
-

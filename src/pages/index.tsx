@@ -1,21 +1,27 @@
 import Layout from "../components/Layout";
 import Tabela from "../components/Tabela";
-import Cliente from "../core/Cliente";
 import Botao from "../components/Botao";
 import Formulario from "../components/Formulario";
-import { useEffect, useState } from "react";
-import ClienteRepositorio from "../core/ClienteRepositorio";
-import ColecaoCliente from "../Backend/db/ColecaoCliente";
+
+import useClientes from "../hooks/useClientes";
 
 export default function Home() {
 
- const { 
+  const {
     cliente,
-   clientes, 
-   novoCliente, 
-   salvarCliente,
-   selecionarCliente, 
-   excluirCliente } = useClientes()
+    clientes,
+    novoCliente,
+    salvarCliente,
+    clienteSelecionado,
+    tabelaVisivel,
+    excluirCliente,
+      
+  } = useClientes();
+
+  function exibirTabela(): void {
+   
+  }
+
     return (
     <div
       className={`
@@ -24,10 +30,10 @@ export default function Home() {
    `}
     >
       <Layout titulo="Cadastro Simples">
-        {visivel === "tabela" ? (
+        {tabelaVisivel ? (
           <>
             <div className="flex justify-end">
-              {/* Corrigido: Agora chama a função novoCliente para resetar o formulário */}
+             
               <Botao cor="green" className="mb-4" onClick={novoCliente}>
                 Novo cliente
               </Botao>
@@ -35,7 +41,7 @@ export default function Home() {
 
             <Tabela
               clientes={clientes}
-              clienteSelecionado={selecionarCliente}
+              clienteSelecionado={clienteSelecionado}
               clienteExcluido={excluirCliente}
             />
           </>
@@ -43,7 +49,7 @@ export default function Home() {
           <Formulario
             cliente={cliente}
             clienteMudou={salvarCliente}
-            cancelado={() => setVisivel("tabela")}
+            cancelado={exibirTabela}
           />
         )}
       </Layout>
